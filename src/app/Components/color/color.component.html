@@ -1,0 +1,42 @@
+
+
+<div class="row">
+
+  <div class="col-md-3">
+    <ul class="list-group">
+      <li routerLink="/car/colors" [class]="getAllColorClass()" (click)="removeCurrentColor()">Tüm Arabalar</li>
+      <li *ngFor="let color of colors" [class]="getCurrentColorClass(color)" (click)="setCurrentColor(color)"
+      routerLink="/car/getcarscolorid/{{color.id}}">
+        {{color.colorName}}
+        <span class="badge bg-dark rounded-pill">14</span>
+      </li>
+    </ul>
+  </div>
+  
+
+  <div class="col-md-9">
+    <div class="row">
+      <div class="card" *ngFor="let car of cars" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;">
+        <img src="https://bo.richymotors.com/images/cars/rtrvbn839392.png" class="card-img-top" alt="...">
+
+        <div class="card-body">
+          <h5 class="card-title">{{car.carName}}</h5>
+          <p class="card-text">{{car.description}}
+          </p>
+          <ul style="text-align: right; list-style: none;">
+            <li class="bi bi-archive-fill"> Dizel/Benzin</li>
+            <li class="bi bi-gear-fill"> Otomatik</li>
+            <li class="bi bi-credit-card-2-front-fill"> {{car.dailyPrice}} TL Depozito</li>
+            <li>4000 Km</li>
+            <li>27 Yaş Ve Üstü</li>
+          </ul>
+
+          <a href="car/rental/{{car.id}}" class="btn btn-primary">Detaylara Git</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

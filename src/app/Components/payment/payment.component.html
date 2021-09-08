@@ -1,0 +1,128 @@
+<div class="card bg-dark text-light">
+  <div class="container-fliud">
+    <div class="wrapper row">
+
+      <div class="preview col-md-4">
+
+        <div class="mb-3">
+          <label for="recipient-name" class="col-form-label">Teslim Alma Tarihi</label>
+          <input class="form-control fs-5" type="datetime-local" id="rentDate" [(ngModel)]="rental.rentDate">
+        </div>
+
+        <div class="mb-3">
+          <label for="recipient-name" class="col-form-label">Aracı Bırakma Tarihi:</label>
+          <input class="form-control fs-5" type="datetime-local" id="returnDate" [(ngModel)]="rental.returnDate">
+        </div>
+
+        <div class="mb-3">
+          <button (click)="getTotalPrice()" type="button" class="btn btn-warning" data-bs-dismiss="modal">Tarihleri Seç</button>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-5">
+        <div id="card-success" class="hidden">
+          <i class="fa fa-check"></i>
+          <p>Ödeme Gerçekleşti!</p>
+        </div>
+        <div id="form-errors" class="hidden">
+          <i class="fa fa-exclamation-triangle"></i>
+          <p id="card-error">Card error</p>
+        </div>
+        <div id="form-container">
+
+          <div id="card-front">
+            <div id="shadow"></div>
+            <div id="image-container">
+              <span id="amount">Ödeme: <strong></strong></span>
+              <span id="card-image"></span>
+            </div>
+            <form [formGroup]="paymentForm">
+              <label for="card-number">
+                Kart Numarası
+              </label>
+
+              <input type="text" id="card-number" placeholder="1234 1234 1234 1234" formControlName="cardNumber"
+                minlength="16" maxlength="16">
+              <div id="cardholder-container">
+                <label for="card-holder">Kart Sahibi
+                </label>
+                <input type="text" id="card-holder" placeholder="e.g. John Doe" formControlName="cardHolder" />
+              </div>
+              <!--- end card holder container --->
+              <div id="exp-container">
+                <label for="card-exp">
+                  Son kullanım tarihi
+                </label>
+                <input id="card-month" type="number" placeholder="MM" max="12" min="1" formControlName="expMonth">
+                <input id="card-year" type="number" placeholder="YY" max="29" min="21" formControlName="expYear">
+              </div>
+              <div id="cvc-container">
+                <label for="card-cvc"> CVC </label>
+                <input id="card-cvc" placeholder="XXX-X" formControlName="cvc" type="text" type="number" maxlength="3">
+                <p>Last 3 or 4 digits</p>
+              </div>
+              <!--- end CVC container --->
+              <!--- end exp container --->
+            </form>
+          </div>
+          <div id="card-back">
+            <div id="card-stripe">
+            </div>
+          </div>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="card-btn"><strong>Ödemeyi Gerçekleştir</strong></button>
+        </div>
+      </div>
+
+
+      <div class="col-md-3">
+        <div class="right border text-dark rightcards">
+          <div class="header">Ödeme Detayı</div>
+          <hr>
+          <div class="row lower">
+            <div class="col text-left">Araba adı : </div>
+            <div class="col text-right">{{car.carName}}</div>
+          </div>
+          <div class="row lower">
+            <div class="col text-left">Model Yılı : </div>
+            <div class="col text-right">{{car.modelYear}}</div>
+          </div>
+          <div class="row lower">
+            <div class="col text-left">Fiyatı : </div>
+            <div class="col text-right">{{car.dailyPrice}} TL</div>
+          </div>
+          <div *ngIf="rental.rentDate && rental.returnDate && this.rental.returnDate >= this.rental.rentDate" class="row lower">
+            <div class="col text-left"><b>Toplam Tutar</b></div>
+            <div class="col text-right"><b> {{totalPrice}} </b></div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Kredi Kartı</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Kartı Kaydetmek İstiyormusunuz?
+        </div>
+        <div class="modal-footer">
+          <button style="all: none;" type="button" class="btn
+                        btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" (click)="addRental()" class="btn btn-primary" data-bs-dismiss="modal">Öde ve Kaydetme </button>
+          <button (click)="addRental()" type="button" class="btn btn-success" data-bs-dismiss="modal">Öde ve Kartı Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>

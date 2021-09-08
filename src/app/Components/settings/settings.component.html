@@ -1,0 +1,139 @@
+<div class="container emp-profile">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="profile-img">
+        <img src="" alt="" />
+        <div class="file btn btn-lg btn-primary">
+          Change Photo
+          <input type="file" name="file" />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="profile-head">
+        <h5>
+          {{user.firstName}} {{user.lastName}}
+        </h5>
+        <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home"
+              aria-selected="true">Hakkımda</a>
+          </li>
+        </ul>
+
+      </div>
+      <button data-bs-toggle="modal" data-bs-target="#changePass" class="btn btn-outline-primary mb-4">Şifre
+        Değiştir</button>
+      <button data-bs-toggle="modal" data-bs-target="#changeEmail" class="btn btn-outline-primary mb-4 ms-4 me-4">Email
+        Değiştir</button>
+      <button data-bs-toggle="modal" data-bs-target="#changeCompany" class="btn btn-outline-primary mb-4">Şirket İsmi
+        Değiştir</button>
+
+    </div>
+
+    <div class="col-md-2">
+
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="profile-work">
+        <p>CAR LINK</p>
+        <a>Lorem ipsum dolor sit amet.</a><br />
+        <a>Lorem, ipsum dolor.</a><br />
+        <a>Lorem ipsum dolor sit amet consectetur.</a>
+        <p>SKILLS</p>
+        <a>Lorem, ipsum dolor.</a><br />
+        <a>Lorem ipsum dolor sit amet.</a><br />
+        <a>Lorem ipsum dolor sit amet consectetur.</a><br />
+        <a>Lorem, ipsum.</a><br />
+        <a>Lorem, ipsum dolor.</a><br />
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="tab-content profile-tab" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Kullanıcı Id</label>
+
+            </div>
+            <div class="col-md-6">
+              <p>{{user.id}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label>İsim</label>
+            </div>
+
+            <div class="col-md-6">
+              <p>{{user.firstName}} {{user.lastName}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label>Email</label>
+            </div>
+
+            <div class="col-md-6">
+              <p>{{user.email}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label>Şirket İsmi</label>
+            </div>
+
+            <div class="col-md-6">
+              <p>Butik Ali İthalat İhtracat Ticaret LTD.ŞTİ</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!---Change Password-->
+<div class="modal fade" id="changePass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Şifre Değiştir</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="userUpdateForm">
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Eski Şifre</label>
+            <input type="password" class="form-control" formControlName="oldPassword" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Yeni Şifre</label>
+            <input type="password" class="form-control" formControlName="newPassword" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Yeni Şifre Tekrar</label>
+            <input type="password" class="form-control" formControlName="newPassword2" id="recipient-name">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" (click)="userUpdate()" class="btn btn-success">Değiştir</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,203 @@
+<div class="row">
+  <div class="col-md-3">
+    <ul class="list-group">
+      <li routerLink="/admin/panel/cars" class="list-group-item d-flex justify-content-between align-items-center">
+        Tüm Arabalar
+        <span class="badge bg-primary rounded-pill">14</span>
+      </li>
+      <li routerLink="/admin/panel/colors" class="list-group-item d-flex justify-content-between align-items-center">
+        Tüm Renkler
+        <span class="badge bg-primary rounded-pill">2</span>
+      </li>
+      <li routerLink="/admin/panel/brands" class="list-group-item d-flex justify-content-between align-items-center">
+        Tüm Markalar
+        <span class="badge bg-primary rounded-pill">1</span>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Arada Adı</th>
+          <th scope="col">Araba Markası</th>
+          <th scope="col">Araba Rengi</th>
+          <th scope="col">Araba Fiyatı</th>
+          <th scope="col">Açıklaması</th>
+          <th> <button data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-success"> Araba
+              Ekle</button> </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of cars">
+          <td>{{car.carId}}</td>
+          <td>{{car.carName}}</td>
+          <td>{{car.brandName}}</td>
+          <td>{{car.colorName}}</td>
+          <td>{{car.dailyPrice}}</td>
+          <td>Çok iyi</td>
+          <td> <button type="button" (click)="setCurrentCar(car)" class="btn btn-danger" data-bs-toggle="modal"
+              data-bs-target="#exampleModal"> <i class="bi bi-tools"></i> Düzenle / Sil </button> </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+<!-- Update a Car Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Araba Ayarları</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="carForm">
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Araba Id</label>
+            <input type="text" class="form-control" placeholder={{currentCar.carId}} formControlName="id" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Araba Adı</label>
+            <input type="text" class="form-control" placeholder={{currentCar.carName}} formControlName="carName" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+            <label for="cars">Araba Markası</label>
+            <select class="form-select" formControlName="brandId" id="id">
+              <option *ngFor="let brand of brands" [ngValue]=brand.id>{{brand.brandName}}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="cars">Araba Rengi</label>
+            <select class="form-select" formControlName="colorId" id="id">
+              <option *ngFor="let color of colors" [ngValue]=color.id>{{color.colorName}}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Araba Fiyatı</label>
+            <input type="number" class="form-control" placeholder={{currentCar.dailyPrice}} formControlName="dailyPrice" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Model Yılı</label>
+            <input type="number" class="form-control" placeholder="Model Yılı" formControlName="modelYear" id="recipient-name">
+          </div>
+
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Açıklaması</label>
+            <input type="text" class="form-control" placeholder="Açıklaması" formControlName="description" id="recipient-name">
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-target="#exampleModal2"
+          class="btn btn-danger">Sil</button>
+        <button type="button" (click)="updateCar()" class="btn btn-primary">Güncelle</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Delete a Car Modal-->
+<div style="background-color: grey;" class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bu Arabayı Silmek İstiyormusunuz ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{currentCar.brandName}}
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" class="btn btn-danger" (click)="deleteCar()">Sil</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add a Car Modal-->
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Araba Ayarları</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="carForm">
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Araba Id</label>
+            <input type="text" class="form-control" formControlName="id" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Araba Adı</label>
+            <input type="text" class="form-control" formControlName="carName" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+            <label for="cars">Araba Markası</label>
+            <select class="form-select" formControlName="brandId" id="id">
+              <option *ngFor="let brand of brands" [ngValue]=brand.id>{{brand.brandName}}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="cars">Araba Rengi</label>
+            <select class="form-select" formControlName="colorId" id="id">
+              <option *ngFor="let color of colors" [ngValue]=color.id>{{color.colorName}}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Araba Fiyatı</label>
+            <input type="number" class="form-control" formControlName="dailyPrice" id="recipient-name">
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Model Yılı</label>
+            <input type="number" class="form-control" formControlName="modelYear" id="recipient-name">
+          </div>
+
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Açıklaması</label>
+            <input type="text" class="form-control" formControlName="description" id="recipient-name">
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" (click)="addCar()" class="btn btn-primary">Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>

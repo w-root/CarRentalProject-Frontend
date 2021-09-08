@@ -1,0 +1,24 @@
+li {
+  list-style: none;
+}
+i{
+    margin-right: 0.45em;
+}
+b {
+  margin-left: 1em;
+}
+.img{
+  border: 1px solid blue;
+}
+#carouselExampleIndicators{
+  margin: auto;
+}
+.col-md-4{
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+.btn{
+  float: right;
+  margin-right: 15rem;
+  margin-bottom: 4rem;
+}

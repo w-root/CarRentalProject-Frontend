@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="col-md-3">
+    <ul class="list-group">
+      <li routerLink="/admin/panel/cars" class="list-group-item d-flex justify-content-between align-items-center">
+        Tüm Arabalar
+        <span class="badge bg-primary rounded-pill">14</span>
+      </li>
+      <li routerLink="/admin/panel/colors" class="list-group-item d-flex justify-content-between align-items-center">
+        Tüm Renkler
+        <span class="badge bg-primary rounded-pill">2</span>
+      </li>
+      <li routerLink="/admin/panel/brands" class="list-group-item d-flex justify-content-between align-items-center">
+        Tüm Markalar
+        <span class="badge bg-primary rounded-pill">1</span>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Renk Id</th>
+          <th scope="col">Renk Adı</th>
+          <th> <button data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-success"> Renk Ekle</button>  </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let color of colors">
+
+          <td>{{color.id}}</td>
+          <td>{{color.colorName}}</td>
+          <td> <button type="button" (click)="setCurrentColor(color)" class="btn btn-danger" data-bs-toggle="modal"
+              data-bs-target="#exampleModal"> <i class="bi bi-tools"></i> Düzenle / Sil </button> </td>
+
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- Update a Color Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Renk Ayarları</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="colorForm">
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Renk Id</label>
+            <input type="text" class="form-control" formControlName="id" id="recipient-name" placeholder={{currentColor.id}}
+               >
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Renk Adı</label>
+            <input type="text" class="form-control" formControlName="colorName" id="recipient-name"
+              placeholder={{currentColor.colorName}}>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-target="#exampleModal2"
+          class="btn btn-danger">Sil</button>
+        <button type="button" (click)="updateColor()" class="btn btn-primary">Güncelle</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Delete a Color Modal-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bu Rengi Silmek İstiyormusunuz ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{currentColor.colorName}}
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" class="btn btn-danger" (click)="deleteColor()">Sil</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add a Color Modal-->
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Renk Ayarları</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="colorForm">
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Renk Id</label>
+            <input type="text" class="form-control" formControlName="id" id="recipient-name" placeholder={{currentColor.id}}
+               >
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Renk Adı</label>
+            <input type="text" class="form-control" formControlName="colorName" id="recipient-name"
+              placeholder={{currentColor.colorName}}>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" (click)="addColor()" class="btn btn-success">Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>

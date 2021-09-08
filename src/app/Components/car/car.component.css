@@ -1,0 +1,10 @@
+ul {
+  text-align: right;
+  list-style: none;
+}
+
+.card {
+  width: 18rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}

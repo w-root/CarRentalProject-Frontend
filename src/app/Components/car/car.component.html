@@ -1,0 +1,43 @@
+<div class="row">
+
+  <div class="col-md-3">
+    <app-brand></app-brand>
+  </div>
+
+  <div class="col-md-9">
+
+    <div style="width: 93%;" class="mb-3 ms-2">
+      <input type="text" 
+       class="form-control"
+       id="filterText" 
+       placeholder="Arama"
+       [(ngModel)]="filterText"     
+       > 
+    </div>
+
+    <div *ngIf="filterText" class="alert alert-success">{{filterText}} aradınız</div>
+
+    <div  class="row ms-2">
+      <div class="card" *ngFor="let car of cars | filter:filterText" >
+        <img src="https://bo.richymotors.com/images/cars/rtrvbn839392.png" class="card-img-top" alt="...">
+
+        <div class="card-body">
+          <h5 class="card-title">{{car.carName}}</h5>
+          <p class="card-text">{{car.description}}
+          </p>
+          <ul>
+            <li class="bi bi-archive-fill"> Dizel/Benzin</li>
+            <li class="bi bi-gear-fill"> Otomatik</li>
+            <li class="bi bi-credit-card-2-front-fill"> {{car.dailyPrice}} TL Depozito</li>
+
+          </ul>
+
+          <a href="car/rental/{{car.id}}" class="btn btn-primary">Detaylara Git</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
