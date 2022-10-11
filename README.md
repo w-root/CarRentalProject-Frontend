@@ -1,27 +1,39 @@
-# CarRentalProject
+# &copy;Car Rental Project - Front-end
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
+## Table of contents
 
-## Development server
+* [Introduction](#introduction)
+* [Backend API](#backend-api)
+* [Technology](#technology)
+* [Project execution](#project-execution)
+* [Content sample](#content-sample)
+## Introduction
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Car Rental Project is a car rental site created online on renting different cars. At the same time, it is the project of the Kodlama io C# and Angular bootcamp. This repository contains the frontend part of car rental project.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Backend API
 
-## Build
+The repository of the backend-API of this project can be found at: https://github.com/w-root/CarRentalProject-Backend
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Technology
 
-## Running unit tests
+* Javascript 
+* Angular 
+* Typescript 
+* Bootstrap
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Project execution
 
-## Running end-to-end tests
+1. Clone this repository
+2. Install the project dependencies with the folling command `npm install`
+3. For development and testing purposes start the project by running the following command: `npm start`, for production enviroments create an optimized build of the project by running `npm build` and then deploy the generated files.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Content sample
+![Screenshot_2](https://user-images.githubusercontent.com/83351907/195135159-06f4067b-81d9-4ba2-a294-e9a9631f4d97.png)
+![Screenshot_3](https://user-images.githubusercontent.com/83351907/195135162-188e4cc4-e75b-4467-ba09-be93048b7cc6.png)
+![Screenshot_1](https://user-images.githubusercontent.com/83351907/195135151-9908c476-5555-4b14-a934-49077e1222ea.png)
+![Screenshot_4](https://user-images.githubusercontent.com/83351907/195135174-31c5d60f-3825-4205-8476-13316ccf730a.png)
+![Screenshot_5](https://user-images.githubusercontent.com/83351907/195135146-128b438c-e6d1-4371-9e14-fb70e8f854a8.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
